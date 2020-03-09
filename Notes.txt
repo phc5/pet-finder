@@ -1,1 +1,4 @@
 https://btholt.github.io/complete-intro-to-react-v5/
+
+Why Server Side Render?
+  Write all of our app in React, pre-render everything, and then send the user the complete markup and then React will take over the page when it is finished loading.
