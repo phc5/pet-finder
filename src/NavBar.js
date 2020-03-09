@@ -20,7 +20,7 @@ const NavBar = () => {
       <Link to="/">Adopt Me!</Link>
       <span
         css={css`
-          animation: 2s ${spin} linear infinite;
+          animation: 3s ${spin} linear infinite;
           display: inline-block;
           font-size: 60px;
 
