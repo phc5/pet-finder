@@ -1,21 +1,33 @@
 import React, { lazy } from 'react';
-import pet from '@frontendmasters/pet';
-import { navigate } from '@reach/router';
+import pet, { Photo } from '@frontendmasters/pet';
+import { navigate, RouteComponentProps } from '@reach/router';
 import Carousel from './Carousel';
 import ErrorBoundary from './ErrorBoundary';
 import ThemeContext from './ThemeContext';
 
 const Modal = lazy(() => import('./Modal'));
 
-class Details extends React.Component {
+class Details extends React.Component<RouteComponentProps<{ id: string }>> {
   state = {
     loading: true,
-    showModal: false
+    showModal: false,
+    animal: '',
+    breed: '',
+    location: '',
+    description: '',
+    media: [] as Photo[],
+    name: '',
+    url: ''
   };
 
   componentDidMount() {
+    if (!this.props.id) {
+      navigate('/');
+      return;
+    }
+
     pet
-      .animal(this.props.id)
+      .animal(+this.props.id)
       .then(
         ({
           animal: { name, type, contact, description, photos, breeds, url }
@@ -86,7 +98,9 @@ class Details extends React.Component {
   }
 }
 
-export default function DetailsWithErrorBoundary(props) {
+export default function DetailsWithErrorBoundary(
+  props: RouteComponentProps<{ id: string }>
+) {
   return (
     <ErrorBoundary>
       <Details {...props} />

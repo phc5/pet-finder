@@ -8,6 +8,7 @@ const Details = lazy(() => import('./Details'));
 const SearchParams = lazy(() => import('./SearchParams'));
 
 const App = () => {
+  console.log('ehllo');
   const themeHook = useState('peru');
 
   return (
